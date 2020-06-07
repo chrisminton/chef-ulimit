@@ -14,7 +14,7 @@ class Chef
         new_resource.filename "#{new_resource.filename}.conf" unless new_resource.filename.end_with?('.conf')
 
         new_resource.subresource_rules.map! do |name, block|
-          urule = Chef::Resource::UlimitRule.new("#{new_resource.name}:#{name}]", nil)
+          urule = Chef::Resource::UlimitRule.new("#{new_resource.name}:#{name}", nil)
           urule.domain new_resource
           urule.action :nothing
           urule.instance_eval(&block)
